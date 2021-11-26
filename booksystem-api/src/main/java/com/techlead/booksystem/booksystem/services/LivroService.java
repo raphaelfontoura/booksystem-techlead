@@ -5,6 +5,8 @@ import com.techlead.booksystem.booksystem.entities.Livro;
 import com.techlead.booksystem.booksystem.entities.User;
 import com.techlead.booksystem.booksystem.repositories.LivroRepository;
 import com.techlead.booksystem.booksystem.repositories.UserRepository;
+import com.techlead.booksystem.booksystem.services.exceptions.ResourceNotFoundException;
+import com.techlead.booksystem.booksystem.services.exceptions.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,7 +34,8 @@ public class LivroService {
 
     @Transactional(readOnly = true)
     public LivroDTO findById(Long id) {
-        return new LivroDTO(repository.getById(id));
+        Livro livro = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Livro não encontrado."));
+        return new LivroDTO(livro);
     }
 
     @Transactional
@@ -52,13 +55,21 @@ public class LivroService {
         Livro livro = repository.getById(id);
         User user = getUserAuth();
         if (!livro.getSavedByUser().equals(user)) {
-            throw new RuntimeException();
+            throw new UnauthorizedException("Usuário não autorizado.");
         }
         livro.setAutor(dto.getAutor());
         livro.setNome(dto.getNome());
         livro.setDataCadastro(dto.getDataCadastro());
         livro = repository.save(livro);
         return new LivroDTO(livro);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Livro livro = repository.getById(id);
+        User user = getUserAuth();
+        if (! livro.getSavedByUser().equals(user)) throw new UnauthorizedException("Usuário não autorizado.");
+        repository.delete(livro);
     }
 
     private User getUserAuth() {
