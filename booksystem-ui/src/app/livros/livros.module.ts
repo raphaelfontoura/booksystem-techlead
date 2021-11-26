@@ -11,6 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 
+import { SharedModule } from '../shared/shared.module';
 import { LivroCadastroComponent } from './livro-cadastro/livro-cadastro.component';
 import { LivrosComponent } from './livros/livros.component';
 
@@ -33,6 +34,7 @@ import { LivrosComponent } from './livros/livros.component';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    SharedModule,
   ],
   exports: []
 })

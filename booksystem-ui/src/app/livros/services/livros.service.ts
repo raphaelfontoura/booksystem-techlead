@@ -9,7 +9,7 @@ import { Livro } from '../models/livro';
 })
 export class LivrosService {
 
-  private readonly BASE_URL = 'http://localhost:8080/livros'
+  private readonly BASE_URL = 'http://localhost:8080/livros/'
 
   constructor(private httpClient: HttpClient) { }
 
