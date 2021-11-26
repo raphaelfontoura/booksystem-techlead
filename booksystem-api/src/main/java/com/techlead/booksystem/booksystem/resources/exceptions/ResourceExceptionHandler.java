@@ -4,6 +4,7 @@ import com.techlead.booksystem.booksystem.services.exceptions.ResourceNotFoundEx
 import com.techlead.booksystem.booksystem.services.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -46,9 +47,18 @@ public class ResourceExceptionHandler {
     }
 
     @ExceptionHandler(UnauthorizedException.class)
-    public ResponseEntity<OAuthCustomError> unauthorizedException(UnauthorizedException e, HttpServletRequest request){
+    public ResponseEntity<OAuthCustomError> unauthorizedException(UnauthorizedException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.UNAUTHORIZED;
         OAuthCustomError err = new OAuthCustomError("Unauthorized", e.getMessage());
 
         return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<OAuthCustomError> usernameNotFound(UnauthorizedException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        OAuthCustomError err = new OAuthCustomError("User not found", e.getMessage());
+
+        return ResponseEntity.status(status).body(err);
+    }
 }

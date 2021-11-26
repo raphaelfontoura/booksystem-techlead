@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class LivroController {
     }
 
     @PostMapping
-    public ResponseEntity<LivroDTO> save(@RequestBody LivroDTO dto) {
+    public ResponseEntity<LivroDTO> save(@Valid @RequestBody LivroDTO dto) {
         LivroDTO livro = service.save(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(livro.getId()).toUri();
-        return ResponseEntity.created(uri).body(service.save(dto));
+        return ResponseEntity.created(uri).body(livro);
     }
 
     @GetMapping("/{id}")
@@ -35,7 +36,7 @@ public class LivroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LivroDTO> update(@PathVariable Long id, @RequestBody LivroDTO dto) {
+    public ResponseEntity<LivroDTO> update(@PathVariable Long id,@Valid @RequestBody LivroDTO dto) {
         return ResponseEntity.ok(service.edit(id, dto));
     }
 

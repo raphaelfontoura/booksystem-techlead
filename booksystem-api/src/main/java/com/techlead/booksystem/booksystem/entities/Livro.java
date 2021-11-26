@@ -15,6 +15,7 @@ public class Livro {
     private String nome;
     private String autor;
     private LocalDate dataCadastro;
-    @ManyToOne
-    private User savedByUser;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User savedBy;
 }
