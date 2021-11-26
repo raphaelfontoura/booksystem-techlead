@@ -6,8 +6,10 @@ import com.techlead.booksystem.booksystem.entities.User;
 import com.techlead.booksystem.booksystem.repositories.LivroRepository;
 import com.techlead.booksystem.booksystem.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -22,24 +24,46 @@ public class LivroService {
     @Autowired
     private UserRepository userRepository;
 
+    @Transactional(readOnly = true)
     public List<LivroDTO> getAll() {
         var livros = repository.findAll();
         return livros.stream().map(LivroDTO::new).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public LivroDTO findById(Long id) {
         return new LivroDTO(repository.getById(id));
     }
 
+    @Transactional
     public LivroDTO save(LivroDTO input) {
         Livro livro = new Livro();
         livro.setNome(input.getNome());
         livro.setAutor(input.getAutor());
         livro.setDataCadastro(LocalDate.now());
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userRepository.findByUsername(username);
+        User user = getUserAuth();
         livro.setSavedByUser(user);
         livro = repository.save(livro);
         return new LivroDTO(livro);
+    }
+
+    @Transactional
+    public LivroDTO edit(Long id, LivroDTO dto) {
+        Livro livro = repository.getById(id);
+        User user = getUserAuth();
+        if (!livro.getSavedByUser().equals(user)) {
+            throw new RuntimeException();
+        }
+        livro.setAutor(dto.getAutor());
+        livro.setNome(dto.getNome());
+        livro.setDataCadastro(dto.getDataCadastro());
+        livro = repository.save(livro);
+        return new LivroDTO(livro);
+    }
+
+    private User getUserAuth() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
+        return user;
     }
 }
