@@ -7,9 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LivrosComponent } from './livros/livros.component';
 import { LivroCadastroComponent } from './livro-cadastro/livro-cadastro.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -26,6 +28,9 @@ import { LivroCadastroComponent } from './livro-cadastro/livro-cadastro.componen
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: []
 })

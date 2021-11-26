@@ -2,3 +2,20 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.span-spacer {
+  flex: 1 1 auto;
+}
+
+.container-flex-center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 5em;
+}
+
+.center-card > form {
+  display: flex;
+  flex-direction: column;
+  width: 30em;
+}

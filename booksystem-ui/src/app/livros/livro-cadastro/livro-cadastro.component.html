@@ -1,1 +1,30 @@
-<p>livro-cadastro works!</p>
+
+<mat-card class="form-livro">
+  <mat-toolbar>
+    Novo Livro
+  </mat-toolbar>
+  <form [formGroup]="livroForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput placeholder="Título" formControlName="nome">
+      </label>
+      <mat-error>
+        <span *ngIf="!livroForm.get('nome')?.valid && livroForm.get('nome')?.touched">Título do Livro</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <label>
+        <input matInput placeholder="Autor" formControlName="autor">
+      </label>
+      <mat-error>
+        <span *ngIf="!livroForm.get('autor')?.valid && livroForm.get('autor')?.touched">Autor do Livro</span>
+      </mat-error>
+    </mat-form-field>
+    
+    
+    <div class="button-row">
+      <button type="submit" [disabled]="!livroForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon> Salvar </button>
+      <button mat-flat-button color="primary" [routerLink]="['/livros']"><mat-icon>arrow_back</mat-icon> Voltar </button>
+    </div>
+  </form>
+</mat-card>

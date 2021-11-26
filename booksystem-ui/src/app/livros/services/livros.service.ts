@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { catchError, first, tap } from 'rxjs/operators';
-import { AuthService } from 'src/app/services/auth.service';
+import { first, tap } from 'rxjs/operators';
+
 import { Livro } from '../models/livro';
 
 @Injectable({
@@ -20,5 +19,12 @@ export class LivrosService {
         first(),
         tap(livros => console.log(livros))
       );
+  }
+
+  save(data: Livro) {
+    return this.httpClient.post<Livro>(this.BASE_URL, data)
+      .pipe(
+        tap(result => console.log(result))
+      )
   }
 }

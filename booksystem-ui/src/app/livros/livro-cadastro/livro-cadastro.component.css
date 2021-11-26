@@ -1,0 +1,12 @@
+.form-livro > form{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.button-row {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

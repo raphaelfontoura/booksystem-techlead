@@ -1,9 +1,9 @@
-<div class="login-container mat-elevation-z8">
+<div class="container-flex-center mat-elevation-z8">
   <div class="example-loading-shade"
        *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
-  <mat-card class="login-card">
+  <mat-card class="center-card">
     <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
       <h2>Log In</h2>
       <mat-form-field class="example-full-width">
