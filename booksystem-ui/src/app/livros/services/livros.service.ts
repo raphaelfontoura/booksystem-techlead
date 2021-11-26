@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, first, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { Livro } from '../models/livro';
 

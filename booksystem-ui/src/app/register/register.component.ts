@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   username = '';
   password = '';
-  name = '';
   isLoadingResults = false;
   matcher = new MyErrorStateMatcher();
 
@@ -30,7 +29,6 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       username : [null, Validators.required],
       password : [null, Validators.required],
-      name : [null, Validators.required]
     });
   }
 

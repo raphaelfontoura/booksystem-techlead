@@ -1,0 +1,12 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 5em;
+}
+
+.login-card > form {
+  display: flex;
+  flex-direction: column;
+  width: 30em;
+}

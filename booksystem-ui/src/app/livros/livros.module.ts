@@ -9,11 +9,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { LivrosComponent } from './livros/livros.component';
+import { LivroCadastroComponent } from './livro-cadastro/livro-cadastro.component';
 
 
 @NgModule({
   declarations: [
-    LivrosComponent
+    LivrosComponent,
+    LivroCadastroComponent
   ],
   imports: [
     CommonModule,

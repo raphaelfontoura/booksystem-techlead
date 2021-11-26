@@ -1,3 +1,10 @@
 .span-spacer {
   flex: 1 1 auto;
 }
+
+.container-flex-center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 5em;
+}

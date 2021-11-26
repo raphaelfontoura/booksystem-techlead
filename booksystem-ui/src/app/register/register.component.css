@@ -1,0 +1,12 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5em;
+}
+
+.register-card > form {
+  display: flex;
+  flex-direction: column;
+  width: 30em;
+}
