@@ -19,7 +19,7 @@ import { LivrosComponent } from './livros/livros.component';
 @NgModule({
   declarations: [
     LivrosComponent,
-    LivroCadastroComponent
+    LivroCadastroComponent,
   ],
   imports: [
     CommonModule,
