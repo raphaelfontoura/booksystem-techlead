@@ -15,7 +15,7 @@ export class LivrosComponent implements OnInit {
 
   livros$: Observable<Livro[]>;
   dataSource = [];
-  displayedColumns = ['nome', 'autor', 'data_cadastro'];
+  displayedColumns = ['nome', 'autor', 'data_cadastro', 'acoes'];
 
   constructor(public livrosService: LivrosService, private _snackBar: MatSnackBar) {
     this.livros$ = this.livrosService.list().pipe(
@@ -36,6 +36,14 @@ export class LivrosComponent implements OnInit {
       horizontalPosition: 'center',
       verticalPosition: 'top',
     });
+  }
+
+  deleteItem(item: Livro) {
+    console.log(item);
+  }
+
+  editItem(item: Livro) {
+    console.log(item)
   }
 
 }

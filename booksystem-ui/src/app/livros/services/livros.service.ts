@@ -27,4 +27,18 @@ export class LivrosService {
         tap(result => console.log(result))
       )
   }
+
+  edit(data: Livro) {
+    return this.httpClient.put<Livro>(this.BASE_URL + data.id, data)
+    .pipe(
+      tap(result => console.log(result))
+    )
+  }
+
+  delete(data: Livro) {
+    return this.httpClient.delete<Livro>(this.BASE_URL + data.id)
+    .pipe(
+      tap(result => console.log(result))
+    )
+  }
 }
