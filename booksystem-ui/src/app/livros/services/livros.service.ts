@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { first, tap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 import { Livro } from '../models/livro';
 
 @Injectable({
@@ -6,11 +9,15 @@ import { Livro } from '../models/livro';
 })
 export class LivrosService {
 
-  constructor() { }
+  private readonly BASE_URL = 'http://localhost:8080/livros'
 
-  list(): Livro[] {
-    return [
-      { autor: "Raphael", nome: "Aprendendo Angular", data_cadastro: "2020-11-10" }
-    ]
+  constructor(private httpClient: HttpClient) { }
+
+  list() {
+    return this.httpClient.get<Livro[]>(this.BASE_URL)
+      .pipe(
+        first(),
+        tap(livros => console.log(livros))
+      );
   }
 }

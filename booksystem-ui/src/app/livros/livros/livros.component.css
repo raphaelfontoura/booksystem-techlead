@@ -1,3 +1,10 @@
 table {
   width: 100%;
 }
+
+.livros-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}

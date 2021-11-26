@@ -89,7 +89,7 @@ export class AuthService {
   }
 
   secured(): Observable<any> {
-    return this.http.get<any>(API_URL + 'secret')
+    return this.http.get<any>(API_URL + 'livros')
       .pipe(catchError(AuthService.handleError));
   }
 }

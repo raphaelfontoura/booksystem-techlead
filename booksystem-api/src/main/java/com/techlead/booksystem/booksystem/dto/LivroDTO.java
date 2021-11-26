@@ -1,5 +1,6 @@
 package com.techlead.booksystem.booksystem.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.techlead.booksystem.booksystem.entities.Livro;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class LivroDTO {
     private String nome;
     @NotNull
     private String autor;
+    @JsonProperty("data_cadastro")
     private LocalDate dataCadastro;
 
     public LivroDTO(Livro entity) {

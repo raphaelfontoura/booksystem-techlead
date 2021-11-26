@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { Livro } from '../models/livro';
 import { LivrosService } from '../services/livros.service';
 
@@ -9,14 +11,16 @@ import { LivrosService } from '../services/livros.service';
 })
 export class LivrosComponent implements OnInit {
 
-  livros: Livro[] = []
+  livros$: Observable<Livro[]>;
   dataSource = [];
   displayedColumns = ['nome', 'autor', 'data_cadastro'];
 
-  constructor(public livrosService: LivrosService) { }
+  constructor(public livrosService: LivrosService) {
+    this.livros$ = this.livrosService.list();
+   }
 
   ngOnInit(): void {
-    this.livros = this.livrosService.list();
+    
   }
 
 }
