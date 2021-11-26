@@ -6,8 +6,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
 
 
-const OAUTH_CLIENT = 'express-client';
-const OAUTH_SECRET = 'express-secret';
+const OAUTH_CLIENT = 'booksystem';
+const OAUTH_SECRET = 'booksystem1pass';
 const API_URL = 'http://localhost:8080/';
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
@@ -81,7 +81,7 @@ export class AuthService {
   }
 
   register(data: any): Observable<any> {
-    return this.http.post<any>(API_URL + 'oauth/signup', data)
+    return this.http.post<any>(API_URL + 'users/', data)
       .pipe(
         tap(_ => AuthService.log('register')),
         catchError(AuthService.handleError)

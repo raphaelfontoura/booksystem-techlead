@@ -11,19 +11,19 @@ export class TokenService {
 
   constructor() { }
 
-  getToken(): string {
+  getToken(): any {
     return localStorage.getItem(ACCESS_TOKEN);
   }
 
-  getRefreshToken(): string {
+  getRefreshToken(): any {
     return localStorage.getItem(REFRESH_TOKEN);
   }
 
-  saveToken(token): void {
+  saveToken(token: any): void {
     localStorage.setItem(ACCESS_TOKEN, token);
   }
 
-  saveRefreshToken(refreshToken): void {
+  saveRefreshToken(refreshToken: any): void {
     localStorage.setItem(REFRESH_TOKEN, refreshToken);
   }
 

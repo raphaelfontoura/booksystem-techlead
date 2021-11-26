@@ -1,1 +1,36 @@
-<p>livros works!</p>
+<mat-card>
+  <mat-toolbar color="secondary">
+    <span>Lista de Livros</span>
+  </mat-toolbar>
+
+  <table mat-table [dataSource]="livros" class="mat-elevation-z8">
+  
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+  
+    <!-- Autor Column -->
+    <ng-container matColumnDef="autor">
+      <th mat-header-cell *matHeaderCellDef> Autor </th>
+      <td mat-cell *matCellDef="let element"> {{element.autor}} </td>
+    </ng-container>
+  
+    <!-- Data Column -->
+    <ng-container matColumnDef="data_cadastro">
+      <th mat-header-cell *matHeaderCellDef> Data de Cadastro </th>
+      <td mat-cell *matCellDef="let element"> {{element.data_cadastro | date: "dd/MM/y"}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
+</mat-card>
