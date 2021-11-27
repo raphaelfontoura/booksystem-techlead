@@ -1,9 +1,9 @@
-import { Component, IterableDiffers, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { AlertaDialogComponent } from 'src/app/shared/components/alerta-dialog/alerta-dialog.component';
 
 import { Livro } from '../models/livro';
@@ -24,7 +24,8 @@ export class LivrosComponent implements OnInit {
     public livrosService: LivrosService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.livros$ = this.livrosService.list().pipe(
       catchError((err) => {
@@ -71,6 +72,6 @@ export class LivrosComponent implements OnInit {
  }
 
   editItem(item: Livro) {
-    console.log(item);
+    this.router.navigate(['cadastro', item.id], {relativeTo: this.route});
   }
 }

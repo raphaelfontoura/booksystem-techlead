@@ -21,6 +21,14 @@ export class LivrosService {
       );
   }
 
+  getById(id: number) {
+    return this.httpClient.get<Livro>(this.BASE_URL + id)
+      .pipe(
+        first(),
+        tap(livro => console.log(livro))
+      );
+  }
+
   save(data: Livro) {
     return this.httpClient.post<Livro>(this.BASE_URL, data)
       .pipe(

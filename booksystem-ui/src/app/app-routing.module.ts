@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'livros', canActivate: [AuthGuard], component: LivrosComponent },
   { path: 'livros/cadastro', canActivate: [AuthGuard], component: LivroCadastroComponent },
-
+  { path: 'livros/cadastro/:id', canActivate: [AuthGuard], component: LivroCadastroComponent },
 ]
 
 @NgModule({
