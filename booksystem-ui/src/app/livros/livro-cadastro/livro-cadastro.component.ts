@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
 import { Livro } from '../models/livro';
 
 import { LivrosService } from '../services/livros.service';
@@ -22,13 +23,15 @@ export class LivroCadastroComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: any) => {
-      const id = params['id'];
-      this.id = id;
-      const curso = this.livroService.getById(id).subscribe((response) => {
-        console.log(response);
-        this.updateForm(response);
-      });
+    this.route.params
+    .pipe(
+      map(params => params.id),
+      switchMap(id => {
+        this.id = id;
+        return this.livroService.getById(id);
+      })
+    ).subscribe(livro => {
+        this.updateForm(livro);
     });
 
     this.livroForm = this.formBuilder.group({
