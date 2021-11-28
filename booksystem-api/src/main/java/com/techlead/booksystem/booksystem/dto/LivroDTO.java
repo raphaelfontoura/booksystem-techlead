@@ -21,11 +21,13 @@ public class LivroDTO {
     private String autor;
     @JsonProperty("data_cadastro")
     private LocalDate dataCadastro;
+    private String owner;
 
     public LivroDTO(Livro entity) {
         this.id = entity.getId();;
         this.nome = entity.getNome();
         this.autor = entity.getAutor();
         this.dataCadastro = entity.getDataCadastro();
+        this.owner = entity.getSavedBy().getUsername();
     }
 }

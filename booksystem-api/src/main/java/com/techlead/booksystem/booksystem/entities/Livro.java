@@ -15,7 +15,7 @@ public class Livro {
     private String nome;
     private String autor;
     private LocalDate dataCadastro;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User savedBy;
 }
