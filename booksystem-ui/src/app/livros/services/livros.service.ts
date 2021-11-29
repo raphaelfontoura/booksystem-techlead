@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs/operators';
+import jwt_decode from 'jwt-decode';
 
 import { Livro } from '../models/livro';
+import jwtDecode from 'jwt-decode';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LivrosService {
 
-  private readonly BASE_URL = 'http://localhost:8080/livros/'
+  private readonly BASE_URL = 'http://localhost:8080/livros/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -48,5 +51,10 @@ export class LivrosService {
     .pipe(
       tap(result => console.log(result))
     )
+  }
+
+  canEdit(data: Livro) {
+    const userDecode = jwt_decode(localStorage.getItem('access_token') || '') as User;
+    return data.owner === userDecode.user_name || userDecode.authorities.includes("ROLE_ADMIN");
   }
 }

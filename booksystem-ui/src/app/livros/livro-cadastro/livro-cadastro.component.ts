@@ -24,15 +24,16 @@ export class LivroCadastroComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params
-    .pipe(
-      map(params => params.id),
-      switchMap(id => {
-        this.id = id;
-        return this.livroService.getById(id);
-      })
-    ).subscribe(livro => {
+      .pipe(
+        map((params) => params.id),
+        switchMap((id) => {
+          this.id = id;
+          return this.livroService.getById(id);
+        })
+      )
+      .subscribe((livro) => {
         this.updateForm(livro);
-    });
+      });
 
     this.livroForm = this.formBuilder.group({
       id: [null],
@@ -52,18 +53,28 @@ export class LivroCadastroComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.id != null) {
-      this.livroService.edit(this.livroForm.value).subscribe((response) => {
-        console.log(response);
-        this.router.navigate(['/livros']);
-      });
+    if (this.livroForm.value.id) {
+      this.livroService.edit(this.livroForm.value).subscribe(
+        (success) => {
+          this.router
+            .navigate(['/livros'])
+            .then((_) => console.log('Livro editado com sucesso!'));
+        },
+        (error) => console.error(error),
+        () => console.log('Request completo')
+      );
     } else {
-      this.livroService.save(this.livroForm.value).subscribe((res) => {
-        console.log('LivroCadastro: ' + res);
-        this.router
-          .navigate(['/livros'])
-          .then((_) => console.log('Livro cadastrado com sucesso!'));
-      });
+      this.livroService.save(this.livroForm.value).subscribe(
+        (success) => {
+          console.log('LivroCadastro:save ', success);
+          this.router
+            .navigate(['/livros'])
+            .then((_) => console.log('Livro cadastrado com sucesso!'));
+        },
+        (error) => console.error(error),
+        () => console.log('Request completo')
+      );
     }
   }
+
 }

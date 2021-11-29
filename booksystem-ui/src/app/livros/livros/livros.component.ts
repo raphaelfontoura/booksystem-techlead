@@ -23,7 +23,6 @@ export class LivrosComponent implements OnInit {
   displayedColumns = ['nome', 'autor', 'data_cadastro', 'acoes'];
   resultDialog = false;
   token: string = '';
-  user: User = {user_name: '', authorities: ['']}
 
   constructor(
     public livrosService: LivrosService,
@@ -42,10 +41,7 @@ export class LivrosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const decodeToken = jwt_decode(localStorage.getItem('access_token') || '');
-    this.user = decodeToken as User;
-    console.log(this.user.user_name);
-    console.log(this.user.authorities);
+    
   }
 
   openSnackBar() {
@@ -84,6 +80,6 @@ export class LivrosComponent implements OnInit {
   }
 
   canEdit(item: Livro) {
-    return item.owner === this.user.user_name || this.user.authorities.includes("ROLE_ADMIN");
+    return this.livrosService.canEdit(item);
   }
 }
