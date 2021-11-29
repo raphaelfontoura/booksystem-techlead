@@ -23,6 +23,11 @@ public class LivroDTO {
     private LocalDate dataCadastro;
     private String owner;
 
+    public LivroDTO(String nome, String autor) {
+        this.nome = nome;
+        this.autor = autor;
+    }
+
     public LivroDTO(Livro entity) {
         this.id = entity.getId();;
         this.nome = entity.getNome();
