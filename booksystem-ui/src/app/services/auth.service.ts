@@ -4,11 +4,12 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { TokenService } from './token.service';
+import { environment } from '../../environments/environment'
 
 
 const OAUTH_CLIENT = 'booksystem';
 const OAUTH_SECRET = 'booksystem1pass';
-const API_URL = 'http://localhost:8080/';
+const API_URL = environment.apiUrl;
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({
     'Content-Type': 'application/x-www-form-urlencoded',

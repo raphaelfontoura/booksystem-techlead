@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, tap } from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
+import { first, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 import { Livro } from '../models/livro';
-import jwtDecode from 'jwt-decode';
 import { User } from '../models/user';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { User } from '../models/user';
 })
 export class LivrosService {
 
-  private readonly BASE_URL = 'http://localhost:8080/livros/';
+  private readonly BASE_URL = environment.apiUrl + 'livros/';
 
   constructor(private httpClient: HttpClient) { }
 
