@@ -71,7 +71,7 @@ public class LivroService {
         if (! user.hasHole("ROLE_ADMIN") && ! owner.equals(user)) {
             throw new UnauthorizedException("Usuário não autorizado.");
         }
-        repository.delete(livro);
+        repository.deleteById(id);
     }
 
     private User getUserAuth() {

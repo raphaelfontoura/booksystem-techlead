@@ -11,7 +11,7 @@ public class LivroFactory {
     public static Long existingId = 1L;
 
     public static Livro getLivro() {
-        User user = new User(1L, "user", "password");
+        User user = UserFactory.getUser();
         Livro livro = new Livro(existingId,
                 "Livro teste",
                 "Autor desconhecido",
