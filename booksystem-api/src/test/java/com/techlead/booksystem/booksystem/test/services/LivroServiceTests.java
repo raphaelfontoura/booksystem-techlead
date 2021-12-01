@@ -163,7 +163,7 @@ public class LivroServiceTests {
 
     @Test
     @WithMockUser(username = "admin", authorities = {"ROLE_ADMIN"})
-    void delete_shouldDoNothing_whenUserAdmin() {
+    void delete_shouldDelete_whenUserAdmin() {
         Livro livro = LivroFactory.getLivro();
         LivroDTO dto = LivroFactory.getLivroDTO();
         User userAdmin = UserFactory.getAdmin();
