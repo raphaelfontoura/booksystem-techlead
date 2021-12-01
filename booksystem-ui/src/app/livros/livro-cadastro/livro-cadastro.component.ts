@@ -53,6 +53,8 @@ export class LivroCadastroComponent implements OnInit {
   }
 
   onSubmit() {
+    const button = document.getElementById("submit_button");
+    button?.setAttribute('disabled', 'disabled');
     if (this.livroForm.value.id) {
       this.livroService.edit(this.livroForm.value).subscribe(
         (success) => {

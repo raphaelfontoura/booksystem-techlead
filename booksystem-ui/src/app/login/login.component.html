@@ -4,7 +4,7 @@
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
   <mat-card class="center-card">
-    <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()" autocomplete="off">
       <h2>Log In</h2>
       <mat-form-field class="example-full-width">
         <label>

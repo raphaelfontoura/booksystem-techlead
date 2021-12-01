@@ -33,6 +33,14 @@
             "scripts": []
           },
           "configurations": {
+            "h3d-development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.h3ddev.ts"
+                }
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -73,6 +81,9 @@
             },
             "development": {
               "browserTarget": "booksystem-ui:build:development"
+            },
+            "h3d-development": {
+              "browserTarget": "booksystem-ui:build:h3d-development"
             }
           },
           "defaultConfiguration": "development"
