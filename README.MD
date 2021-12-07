@@ -4,8 +4,10 @@
 > Adicionado ainda o Swagger e camada de segurança com OAuth2.
 
 ### Sistema:
-[] Administrador: capaz de cadastrar / editar / excluir todos os livros (nome, autor, data de cadastro)
-[] Cliente: pode cadastrar livros, porém só pode editar e excluir os livros que cadastrou, sendo que os demais cadastrados no sistema ele somente conseguirá visualizar.
+
+:ballot_box_with_check: Administrador: capaz de cadastrar / editar / excluir todos os livros (nome, autor, data de cadastro)
+
+:ballot_box_with_check: Cliente: pode cadastrar livros, porém só pode editar e excluir os livros que cadastrou, sendo que os demais cadastrados no sistema ele somente conseguirá visualizar.
 
 ### Regra:
 1. Deve conter uma tela inicial de login.
