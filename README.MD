@@ -14,8 +14,15 @@
 4. O perfil administrador poderá executar o CRUD em todos os livros.
 5. O perfil de cliente poderá ler todos os livros, mas somente editar e excluir aqueles que ele cadastrou.
 
+<br />
+
 ### Tecnologias utilizadas
 
-JAVA
-Angular
-Spring
+<br />
+
+![](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+
+![](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+
+![](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+
