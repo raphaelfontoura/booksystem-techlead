@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Livro } from '../models/livro';
 
@@ -26,9 +27,12 @@ export class LivroCadastroComponent implements OnInit {
     this.route.params
       .pipe(
         map((params) => params.id),
-        switchMap((id) => {
-          this.id = id;
-          return this.livroService.getById(id);
+        switchMap<number, Observable<Livro>>((id) => {
+          if (id) {
+            this.id = id;
+            return this.livroService.getById(id);
+          }
+          return of<Livro>();
         })
       )
       .subscribe((livro) => {
@@ -53,7 +57,7 @@ export class LivroCadastroComponent implements OnInit {
   }
 
   onSubmit() {
-    const button = document.getElementById("submit_button");
+    const button = document.getElementById('submit_button');
     button?.setAttribute('disabled', 'disabled');
     if (this.livroForm.value.id) {
       this.livroService.edit(this.livroForm.value).subscribe(
@@ -78,5 +82,4 @@ export class LivroCadastroComponent implements OnInit {
       );
     }
   }
-
 }
